@@ -7,11 +7,47 @@
     <description>Widget for the Frappe Gantt chart</description>
     <icon/>
     <properties>
-        <propertyGroup caption="General">
-            <property key="sampleText" type="string" required="false">
-                <caption>Default value</caption>
-                <description>Sample text input</description>
+        <propertyGroup caption="Tasks">
+            <property key="tasks" type="datasource" isList="true">
+                <caption>Tasks</caption>
+                <description>Collection of tasks to display</description>
             </property>
+            <property key="TaskId" type="attribute" required="true" dataSource="tasks">
+                <caption>Task Id</caption>
+                <description>The Id of the task</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+            <property key="TaskName" type="attribute" required="true" dataSource="tasks">
+                <caption>Name</caption>
+                <description>The name of the task</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+            <property key="StartDate" type="attribute" required="true" dataSource="tasks">
+                <caption>Start Date</caption>
+                <description>The start date of the task in the format yyyy-MM-dd</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+            <property key="EndDate" type="attribute" required="true" dataSource="tasks">
+                <caption>End Date</caption>
+                <description>The end date of the task in the format yyyy-MM-dd</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+            <property key="Progress" type="attribute" required="true" dataSource="tasks">
+                <caption>Progress</caption>
+                <description>The progress made on the task</description>
+                <attributeTypes>
+                    <attributeType name="Integer" />
+                </attributeTypes>
+            </property>
+
         </propertyGroup>
     </properties>
 </widget>

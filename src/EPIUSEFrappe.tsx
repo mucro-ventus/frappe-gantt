@@ -8,6 +8,6 @@ import "./ui/EPIUSEFrappe.css";
 export class EPIUSEFrappe extends Component<EPIUSEFrappeContainerProps> {
     
     render(): ReactNode {
-        return <EFrappeGant tasksJson="" />;
+        return <EFrappeGant data={this.props} />;
     }
 }

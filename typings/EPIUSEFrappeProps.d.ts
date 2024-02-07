@@ -4,13 +4,20 @@
  * @author Mendix Widgets Framework Team
  */
 import { CSSProperties } from "react";
+import { ListValue, ListAttributeValue } from "mendix";
+import { Big } from "big.js";
 
 export interface EPIUSEFrappeContainerProps {
     name: string;
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
-    sampleText: string;
+    tasks: ListValue;
+    TaskId: ListAttributeValue<string>;
+    TaskName: ListAttributeValue<string>;
+    StartDate: ListAttributeValue<string>;
+    EndDate: ListAttributeValue<string>;
+    Progress: ListAttributeValue<Big>;
 }
 
 export interface EPIUSEFrappePreviewProps {
@@ -22,5 +29,10 @@ export interface EPIUSEFrappePreviewProps {
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
-    sampleText: string;
+    tasks: {} | { caption: string } | { type: string } | null;
+    TaskId: string;
+    TaskName: string;
+    StartDate: string;
+    EndDate: string;
+    Progress: string;
 }
