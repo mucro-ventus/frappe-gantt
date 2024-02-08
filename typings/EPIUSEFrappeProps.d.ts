@@ -4,7 +4,7 @@
  * @author Mendix Widgets Framework Team
  */
 import { CSSProperties } from "react";
-import { ListValue, ListAttributeValue } from "mendix";
+import { ActionValue, EditableValue, ListValue, ListAttributeValue } from "mendix";
 import { Big } from "big.js";
 
 export type ViewModeEnum = "QuarterDay" | "HalfDay" | "Day" | "Week" | "Month";
@@ -23,6 +23,13 @@ export interface EPIUSEFrappeContainerProps {
     Progress: ListAttributeValue<Big>;
     Dependencies: ListAttributeValue<string>;
     CustomClass?: ListAttributeValue<string>;
+    eventTaskId?: EditableValue<string>;
+    updatedProgress?: EditableValue<Big>;
+    onProgressChanged?: ActionValue;
+    updatedStartDate?: EditableValue<string>;
+    updatedEndDate?: EditableValue<string>;
+    onDateChanged?: ActionValue;
+    onClick?: ActionValue;
 }
 
 export interface EPIUSEFrappePreviewProps {
@@ -43,4 +50,11 @@ export interface EPIUSEFrappePreviewProps {
     Progress: string;
     Dependencies: string;
     CustomClass: string;
+    eventTaskId: string;
+    updatedProgress: string;
+    onProgressChanged: {} | null;
+    updatedStartDate: string;
+    updatedEndDate: string;
+    onDateChanged: {} | null;
+    onClick: {} | null;
 }

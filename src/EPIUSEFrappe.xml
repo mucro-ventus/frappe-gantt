@@ -8,6 +8,7 @@
     <studioProCategory>Charts</studioProCategory>
     <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEmUlEQVR4nO2bX2wURRzHR02M0RA1MTFR44OJPpAYjcQH693M9m5m73av9o9wNkFpoYW2N7N7bWnlaK9QpUJLS0LFSqkgBVFRiTExpghNDUm1NkSkJJCoxH/EUCWG+IB65a4dM6WYPnhw5+7t7pX9JJ/k9zjzzf12f7t7A4CL+RDSdAckbC3ELGaGhXJkCcgnYEDzIsK4XhGfilYas/SZxmmI2SDIJ7yEQhHA9KGPODdoJ9vMcx4AInQZwnTI49MXixoSOmxImX41G0DfAOcGXb+ilUPCfjG8JkKHEaaazxe9F2H2sajBVaCfPYUI21yA2X1Xatpl0HfMCmBjZZwjzE6ZsKYuiKlaUFy1CBH6sqhBrlvgp64d/JxB2ypac98CZjP3i+KBoH7ZqD7CpiFhb4B8IhwO34JkVoSIFjZDn6/2frv35OLiYg0SjiBEtA8kmR0yS0jYux4/ewTkAwizV0vD8ZlY6z5uliTUmEKYrgH5EkBE70uOjV3kZlmyrDVxzQAQZnWI0G+hP/LklZp9b6N/hJdvmj5y5AI3S6w2pBBhFyBmHU/j6IMQs9OiBleBOPqwl2jVGNfcKWoosxq7RJiNVFZvSw0NTXKzVIubpyCmB7wB9sTicPutXsIqRQ2c2gIvrNqaGtw/wc0yVBq7dgs4CUhYpxijzRZithzkAwhV3ibeAJmr9hhob7/Z7r25uNxIIEIf96n1X/vVxjOWqjScEuO0EwJYiUNrU7HtQ9xK1aUtSUi0dY4IQHm2JbH3+F/cSstWvJLIOgBEWAskNDn3Pr/FrHtvYbAhte3YJW6lcsmLybRrwnTA4488BAn7W9Tg3wBQzT1QjhSKMVHUyK9ho0qYdeOSWGLr8EVupaHylxLQr+3+z3UF9QfEPIAw9czWOb8GFDVfbto1zq00uDQ+5YhrAMRURYTN5GKsvZ7iYQc4gYLiqkWeUORuKxVPtHbv22XB4zHp5yr+RwDyDYjpFhMvWOLb/6Mgn0CY7qlufo3v//KsYWdD8DPJ7j2BbAYhCdOh1fE9M+/9/Cc3qghA8mlNZgxeGZluEEJZjsLPRXpm3vrxEjeq5TNCulE42xZYuX7XzMDEJDeqY1og2wBKKzZx1vO+YfMyAK9Mn/cp9ad9qgkG9XH327+Li7NZUlRzu9VPdEIAwE127x2IYUEiNP0rphwqEbbT7v0DMaeLxfQf/YwPjo5aZm1LL5eC+of2j8JYWyMCePPkOH/7uwnLrGvfwSVZG3XMKNx/Yozv/eaEZZZHOpwxCsO5Fth+bIS/fvxzy1y9weIWuF4AtR19PNLZb5llqzY4IwCE6u/yKdEvCtXoGatFAVZn9/5dXG7U7/ooy7+zi1sLWCgQVTuHFS2lFOnJTPQHtWmi6J+AhUJA1X87fKCX87MHM3Jn9xYuh6LDIJ+B8w5NEUWbPLx7I+cnuzOyOx7jhQH2gxmHmnJt2kNTaN6xuWwD6Iit45JMfzfjWFuuTXtsbj5E0X492NvGz49syciethjHQe0oWChghZ0vL48ma6oaE5lYWqan/Ir2KVgooNlbW3a9Jc4J2r1uF/D/+AeOm1BfRJKRgAAAAABJRU5ErkJggg==</icon>
     <properties>
+
         <propertyGroup caption="General">
             <property key="ViewMode" type="enumeration" defaultValue="Day">
                 <caption>View Mode</caption>
@@ -21,6 +22,7 @@
                 </enumerationValues>
               </property>
         </propertyGroup>
+
         <propertyGroup caption="Tasks">
             <propertyGroup caption="Tasks">
                 <property key="tasks" type="datasource" isList="true">
@@ -79,7 +81,61 @@
                     </attributeTypes>
                 </property>
             </propertyGroup>
+        </propertyGroup>
 
+        <propertyGroup caption="Events">
+            <propertyGroup caption="Shared">
+                <property key="eventTaskId" type="attribute" required="false">
+                    <caption>Event Task Id</caption>
+                    <description>The Id of the task that triggered the event</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Progress Update">
+                <property key="updatedProgress" type="attribute" required="false">
+                    <caption>Updated Progress</caption>
+                    <description>The new progress value for the task. The widget cannnot directly update the task as Mendix does not support this for data source entries.
+                    </description>
+                    <attributeTypes>
+                        <attributeType name="Integer" />
+                    </attributeTypes>
+                </property>
+                <property key="onProgressChanged" type="action" required="false">
+                    <caption>On Progress Changed</caption>
+                    <description>What should happen the user updates the progress on a task. When updating the Mendix task instance be sure to refresh in client so the widget UI updates correctly.</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Date Update">
+                <property key="updatedStartDate" type="attribute" required="false">
+                    <caption>Updated Start Date</caption>
+                    <description>The new start date value for the task in the format yyyy-MM-dd. The widget cannnot directly update the task as Mendix does not support this for data source entries.
+                    </description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="updatedEndDate" type="attribute" required="false">
+                    <caption>Updated End Date</caption>
+                    <description>The new end date value for the task in the format yyyy-MM-dd. The widget cannnot directly update the task as Mendix does not support this for data source entries.
+                    </description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="onDateChanged" type="action" required="false">
+                    <caption>On Date Changed</caption>
+                    <description>What should happen the user updates the dates on a task. When updating the Mendix task instance be sure to refresh in client so the widget UI updates correctly.</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Click">
+                <property key="onClick" type="action" required="false">
+                    <caption>On Click</caption>
+                    <description>What should happen the user double clicks a task.</description>
+                </property>
+            </propertyGroup>
+            
         </propertyGroup>
     </properties>
 </widget>
