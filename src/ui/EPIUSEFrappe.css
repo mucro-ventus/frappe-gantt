@@ -1,6 +1,6 @@
 /*
 Place your custom CSS here
 */
-.widget-hello-world {
-
+.gantt-container > div {
+    overflow: auto !important;
 }

@@ -1,10 +1,11 @@
 import { Component, ReactNode, createElement } from "react";
-import { FrappeGantt, Task } from "@toyokoh/frappe-gantt-react";
+import { FrappeGantt, Task, ViewMode } from "@toyokoh/frappe-gantt-react";
 import { EPIUSEFrappeContainerProps } from "typings/EPIUSEFrappeProps";
 import { ObjectItem } from "mendix";
 
 export interface EFrappeGantProps {
     data: EPIUSEFrappeContainerProps;
+    viewMode: ViewMode;
 }
 
 export class EFrappeGant extends Component<EFrappeGantProps> {
@@ -17,24 +18,22 @@ export class EFrappeGant extends Component<EFrappeGantProps> {
         task.name = data.TaskName ? data.TaskName.get(item).displayValue : "";
         task.start = data.StartDate ? data.StartDate.get(item).displayValue : "";
         task.end = data.EndDate ? data.EndDate.get(item).displayValue : "";
+        task.dependencies = data.Dependencies ? data.Dependencies.get(item).displayValue : "";
         var progress = data.Progress ? data.Progress.get(item).value?.toNumber() : 0;
         task.progress = progress ? progress : 0;
+
+        var customClass = data.CustomClass ? data.CustomClass.get(item).displayValue : "";
+        if(customClass != "")
+        {
+            task.custom_class = customClass;
+        }
 
         return task;
     }
 
     render(): ReactNode 
-    {
-        // TODO - Why do we get an error when we don't have this task here?
-        var task = new Task();
-        task.id = 'Task 1';
-        task.name = 'Redesign website';
-        task.start = '2016-12-28';
-        task.end = '2016-12-31';
-        task.progress = 20;
-        
+    {        
         const tasks : Task[] = [];        
-        tasks.push(task);
 
         var items = this.props.data.tasks;
         if(items.items)
@@ -42,9 +41,18 @@ export class EFrappeGant extends Component<EFrappeGantProps> {
             for(const entry of items.items)
             {
                 tasks.push(this.populateTask(entry));            
-            }        
+            }
         }
 
-        return <FrappeGantt tasks={tasks} /> 
+        console.trace("Task count: " + tasks.length);
+        // If there are no tasks return an empty div, otherwise the widget won't render
+        if (tasks.length == 0)
+        {
+            return <div></div>
+        }
+
+        return <FrappeGantt 
+        tasks={tasks} 
+        viewMode={this.props.viewMode} /> 
     }
 }

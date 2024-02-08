@@ -7,17 +7,22 @@ import { CSSProperties } from "react";
 import { ListValue, ListAttributeValue } from "mendix";
 import { Big } from "big.js";
 
+export type ViewModeEnum = "QuarterDay" | "HalfDay" | "Day" | "Week" | "Month";
+
 export interface EPIUSEFrappeContainerProps {
     name: string;
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
+    ViewMode: ViewModeEnum;
     tasks: ListValue;
     TaskId: ListAttributeValue<string>;
     TaskName: ListAttributeValue<string>;
     StartDate: ListAttributeValue<string>;
     EndDate: ListAttributeValue<string>;
     Progress: ListAttributeValue<Big>;
+    Dependencies: ListAttributeValue<string>;
+    CustomClass?: ListAttributeValue<string>;
 }
 
 export interface EPIUSEFrappePreviewProps {
@@ -29,10 +34,13 @@ export interface EPIUSEFrappePreviewProps {
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
+    ViewMode: ViewModeEnum;
     tasks: {} | { caption: string } | { type: string } | null;
     TaskId: string;
     TaskName: string;
     StartDate: string;
     EndDate: string;
     Progress: string;
+    Dependencies: string;
+    CustomClass: string;
 }

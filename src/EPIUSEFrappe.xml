@@ -1,52 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="epi-use.epiusefrappe.EPIUSEFrappe" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+<widget id="epi-use.epiusefrappe.EPIUSEFrappe" pluginWidget="true" needsEntityContext="false" offlineCapable="true"
         supportedPlatform="Web"
         xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
-    <name>EPIUSEFrappe</name>
+    <name>Frappe Gantt</name>
     <description>Widget for the Frappe Gantt chart</description>
-    <icon/>
+    <studioProCategory>Charts</studioProCategory>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEmUlEQVR4nO2bX2wURRzHR02M0RA1MTFR44OJPpAYjcQH693M9m5m73av9o9wNkFpoYW2N7N7bWnlaK9QpUJLS0LFSqkgBVFRiTExpghNDUm1NkSkJJCoxH/EUCWG+IB65a4dM6WYPnhw5+7t7pX9JJ/k9zjzzf12f7t7A4CL+RDSdAckbC3ELGaGhXJkCcgnYEDzIsK4XhGfilYas/SZxmmI2SDIJ7yEQhHA9KGPODdoJ9vMcx4AInQZwnTI49MXixoSOmxImX41G0DfAOcGXb+ilUPCfjG8JkKHEaaazxe9F2H2sajBVaCfPYUI21yA2X1Xatpl0HfMCmBjZZwjzE6ZsKYuiKlaUFy1CBH6sqhBrlvgp64d/JxB2ypac98CZjP3i+KBoH7ZqD7CpiFhb4B8IhwO34JkVoSIFjZDn6/2frv35OLiYg0SjiBEtA8kmR0yS0jYux4/ewTkAwizV0vD8ZlY6z5uliTUmEKYrgH5EkBE70uOjV3kZlmyrDVxzQAQZnWI0G+hP/LklZp9b6N/hJdvmj5y5AI3S6w2pBBhFyBmHU/j6IMQs9OiBleBOPqwl2jVGNfcKWoosxq7RJiNVFZvSw0NTXKzVIubpyCmB7wB9sTicPutXsIqRQ2c2gIvrNqaGtw/wc0yVBq7dgs4CUhYpxijzRZithzkAwhV3ibeAJmr9hhob7/Z7r25uNxIIEIf96n1X/vVxjOWqjScEuO0EwJYiUNrU7HtQ9xK1aUtSUi0dY4IQHm2JbH3+F/cSstWvJLIOgBEWAskNDn3Pr/FrHtvYbAhte3YJW6lcsmLybRrwnTA4488BAn7W9Tg3wBQzT1QjhSKMVHUyK9ho0qYdeOSWGLr8EVupaHylxLQr+3+z3UF9QfEPIAw9czWOb8GFDVfbto1zq00uDQ+5YhrAMRURYTN5GKsvZ7iYQc4gYLiqkWeUORuKxVPtHbv22XB4zHp5yr+RwDyDYjpFhMvWOLb/6Mgn0CY7qlufo3v//KsYWdD8DPJ7j2BbAYhCdOh1fE9M+/9/Cc3qghA8mlNZgxeGZluEEJZjsLPRXpm3vrxEjeq5TNCulE42xZYuX7XzMDEJDeqY1og2wBKKzZx1vO+YfMyAK9Mn/cp9ad9qgkG9XH327+Li7NZUlRzu9VPdEIAwE127x2IYUEiNP0rphwqEbbT7v0DMaeLxfQf/YwPjo5aZm1LL5eC+of2j8JYWyMCePPkOH/7uwnLrGvfwSVZG3XMKNx/Yozv/eaEZZZHOpwxCsO5Fth+bIS/fvxzy1y9weIWuF4AtR19PNLZb5llqzY4IwCE6u/yKdEvCtXoGatFAVZn9/5dXG7U7/ooy7+zi1sLWCgQVTuHFS2lFOnJTPQHtWmi6J+AhUJA1X87fKCX87MHM3Jn9xYuh6LDIJ+B8w5NEUWbPLx7I+cnuzOyOx7jhQH2gxmHmnJt2kNTaN6xuWwD6Iit45JMfzfjWFuuTXtsbj5E0X492NvGz49syciethjHQe0oWChghZ0vL48ma6oaE5lYWqan/Ir2KVgooNlbW3a9Jc4J2r1uF/D/+AeOm1BfRJKRgAAAAABJRU5ErkJggg==</icon>
     <properties>
+        <propertyGroup caption="General">
+            <property key="ViewMode" type="enumeration" defaultValue="Day">
+                <caption>View Mode</caption>
+                <description>The way to visualize the Gantt chart</description>
+                <enumerationValues>
+                  <enumerationValue key="QuarterDay">Quarter Day</enumerationValue>
+                  <enumerationValue key="HalfDay">Half Day</enumerationValue>
+                  <enumerationValue key="Day">Day</enumerationValue>
+                  <enumerationValue key="Week">Week</enumerationValue>
+                  <enumerationValue key="Month">Month</enumerationValue>
+                </enumerationValues>
+              </property>
+        </propertyGroup>
         <propertyGroup caption="Tasks">
-            <property key="tasks" type="datasource" isList="true">
-                <caption>Tasks</caption>
-                <description>Collection of tasks to display</description>
-            </property>
-            <property key="TaskId" type="attribute" required="true" dataSource="tasks">
-                <caption>Task Id</caption>
-                <description>The Id of the task</description>
-                <attributeTypes>
-                    <attributeType name="String" />
-                </attributeTypes>
-            </property>
-            <property key="TaskName" type="attribute" required="true" dataSource="tasks">
-                <caption>Name</caption>
-                <description>The name of the task</description>
-                <attributeTypes>
-                    <attributeType name="String" />
-                </attributeTypes>
-            </property>
-            <property key="StartDate" type="attribute" required="true" dataSource="tasks">
-                <caption>Start Date</caption>
-                <description>The start date of the task in the format yyyy-MM-dd</description>
-                <attributeTypes>
-                    <attributeType name="String" />
-                </attributeTypes>
-            </property>
-            <property key="EndDate" type="attribute" required="true" dataSource="tasks">
-                <caption>End Date</caption>
-                <description>The end date of the task in the format yyyy-MM-dd</description>
-                <attributeTypes>
-                    <attributeType name="String" />
-                </attributeTypes>
-            </property>
-            <property key="Progress" type="attribute" required="true" dataSource="tasks">
-                <caption>Progress</caption>
-                <description>The progress made on the task</description>
-                <attributeTypes>
-                    <attributeType name="Integer" />
-                </attributeTypes>
-            </property>
+            <propertyGroup caption="Tasks">
+                <property key="tasks" type="datasource" isList="true">
+                    <caption>Tasks</caption>
+                    <description>Collection of tasks to display</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Task Details">
+                <property key="TaskId" type="attribute" required="true" dataSource="tasks">
+                    <caption>Task Id</caption>
+                    <description>The Id of the task</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="TaskName" type="attribute" required="true" dataSource="tasks">
+                    <caption>Name</caption>
+                    <description>The name of the task</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="StartDate" type="attribute" required="true" dataSource="tasks">
+                    <caption>Start Date</caption>
+                    <description>The start date of the task in the format yyyy-MM-dd</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="EndDate" type="attribute" required="true" dataSource="tasks">
+                    <caption>End Date</caption>
+                    <description>The end date of the task in the format yyyy-MM-dd</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="Progress" type="attribute" required="true" dataSource="tasks">
+                    <caption>Progress</caption>
+                    <description>The progress made on the task</description>
+                    <attributeTypes>
+                        <attributeType name="Integer" />
+                    </attributeTypes>
+                </property>
+                <property key="Dependencies" type="attribute" required="true" dataSource="tasks">
+                    <caption>Dependencies</caption>
+                    <description>Comma seperated list of Task Ids that this task depends on</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="CustomClass" type="attribute" required="false" dataSource="tasks">
+                    <caption>Custom Class</caption>
+                    <description>Custom CSS class name for styling the bar</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
 
         </propertyGroup>
     </properties>
